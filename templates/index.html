@@ -1,0 +1,65 @@
+{% load static %}
+<!-- <img src="{% static 'my_app/example.jpg' %}" alt="My image"> -->
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>NMDb: Ratings, Reviews, and Details about Nepali Movies & Series ...</title>
+    <link rel="stylesheet" href="{% static 'css/nmdb-nav.css' %}">
+    <link rel="icon" href="{% static 'images/nmdb-title.png' %}">
+</head>
+
+<body>
+    <nav>
+        <img src="{% static 'images/menu.svg' %}" alt='f-menu' id='mimg' class='first-menu'>
+        <img src="{% static 'images/NMDB.png' %}" alt='nmdb' id='nmdb'>
+        <p id="menu">
+            <img src="{% static 'images/menu.svg' %}" alt="menu" id="mimg">Menu
+        </p>
+        <!-- Scarch  -->
+        <div id='scarch'>
+            <div id='all' onclick='all_li()'>
+                <div id='present-list'>All</div>
+                <img src="{% static 'images/triangle.svg' %}" alt='triangle' id='triangle'>
+            </div>
+            <ui id='all-list'>
+                <li id='ls-all'>
+                    <img src="{% static 'images/scarch.svg' %}" id="list-img">All
+                </li>
+                <li id='ls-title'>
+                    <img src="{% static 'images/film-img.svg' %}" id="list-img">Title
+                </li>
+                <li id='ls-tv'>
+                    <img src="{% static 'images/television.svg' %}" id="list-img">TV Episodes
+                </li>
+                <li id='ls-celibs'>
+                    <img src="{% static 'images/group.svg' %}" id="list-img">Celibs
+                </li>
+                <li id='ls-comp'>
+                    <img src="{% static 'images/company.svg' %}" id="list-img">Compaines
+                </li>
+                <li id='ls-key'>
+                    <img src="{% static 'images/right-arrow-triangle.svg' %}" id="list-img">Keywords
+                </li>
+                <li id='ls-adv'>
+                    <img src="{% static 'images/document-page-blank.svg' %}" id="list-img">Advance Scarch
+                    <img src="{% static 'images/right-arrow-triangle.svg' %}" class="right-arrow" id="list-img">
+                </li>
+            </ui>
+            <input placeholder="Scarch NMDb">
+            <button type="submit"><img src="{% static 'images/scarch.svg' %}"></button>
+        </div>
+        <!-- post scarch -->
+        <div id="pro">NMDBPro</div>
+        <div id="vline"></div>
+        <div id="wlist"><img src="{% static 'images/whtchlist.svg' %}" id="wl-img">Watchlist</div>
+        <div id="sin">Sign In</div>
+    </nav>
+
+</body>
+<script>
+    var static_image_url = "{% static 'images/' %}"
+</script>
+<script src="{% static 'js/nmdb-nav.js' %}"></script>
+
+</html>
