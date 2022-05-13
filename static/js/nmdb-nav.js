@@ -15,7 +15,7 @@ function all_li() {
 document.getElementById('ls-all').addEventListener('click', on_list);
 document.getElementById('ls-title').addEventListener('click', on_list);
 document.getElementById('ls-tv').addEventListener('click', on_list);
-document.getElementById('ls-celibs').addEventListener('click', on_list);
+document.getElementById('ls-celebs').addEventListener('click', on_list);
 document.getElementById('ls-comp').addEventListener('click', on_list);
 document.getElementById('ls-key').addEventListener('click', on_list);
 document.getElementById('ls-adv').addEventListener('click', off_list);

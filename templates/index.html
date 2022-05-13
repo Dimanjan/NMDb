@@ -5,51 +5,142 @@
 
 <head>
     <title>NMDb: Ratings, Reviews, and Details about Nepali Movies & Series ...</title>
+    <link rel="stylesheet" href="{% static 'css/overall.css' %}">
+    <link rel="stylesheet" href="{% static 'css/menu-expand.css' %}">
+
     <link rel="stylesheet" href="{% static 'css/nmdb-nav.css' %}">
     <link rel="icon" href="{% static 'images/nmdb-title.png' %}">
 </head>
 
 <body>
+    <div id="menu-expand">
+        <div id="menu-header">
+        <div id="menu-logo">
+            <img src="{% static 'images/NMDB.png' %}" alt="NMDb Logo" >
+        </div>
+        <div id="close-menu-expand">
+            <img src="{% static 'images/close.svg' %}" alt="Close Menu" onclick="close_menu()">
+        </div>
+    </div>
+    <div id="three-fold">
+        <div class="three-fold-menu">
+
+        <ul>
+            <h5>
+                <img src="{% static 'images/movies.svg' %}" alt='Movies Icon' id='movies-icon'>
+                <a href="{% url 'movie_list' %}">Movies</a>
+            </h5>
+
+            <li><a href="#">Release Calander</a></li>
+            <li><a href="#">DVD & Blu-ray Releases</a></li>
+            <li><a href="#">Top 250 Movies</a></li>
+            <li><a href="#">Most Popular Movies</a></li>
+            <li><a href="#">Browse Movies by Genre</a></li>
+            <li><a href="#">Top Box Office</a></li>
+            <li><a href="#">Showtimes & Tickets</a></li>
+            <li><a href="#">Coming Soon</a></li>
+            <li><a href="#">Movie News</a></li>
+            <li><a href="#">Indegenous Movie Spotlight</a></li>
+            <li><a href="#"></a></li>
+
+        </ul>
+
+        <ul>
+            <h5><img src="{% static 'images/celebs.svg' %}" alt='Celebs Icon' id='celebs-icon'>
+            <a href="#">Celebs</a></h5>
+            <li><a href="#">Celebrities A-Z</a></li>
+            <li><a href="#">Celebrity News</a></li>
+        </ul>
+        
+</div>
+<div class="three-fold-menu">
+        <ul>
+            <h5>
+                <img src="{% static 'images/series.svg' %}" alt='Series Icon' id='series-icon'>
+                <a href="#">Series</a></h5>
+            <li><a href="#">Series A-Z</a></li>
+            <li><a href="#">What's on TV & Streaming</a></li>
+            <li><a href="#">Top 250 Series</a></li>
+            <li><a href="#">Most Popular Series</a></li>
+            <li><a href="#">Browse Series by Genre</a></li>
+            <li><a href="#">Series News</a></li>
+            <li><a href="#">Bhojpuri TV Spotlight</a></li>
+            
+
+        </ul>
+        <ul>
+            <h5><img src="{% static 'images/watch.svg' %}" alt='Watch Icon' id='watch-icon'>
+            <a href="#">Watch</a></h5>
+            <li><a href="#">What to watch</a></li>
+            <li><a href="#">Latest Trailers</a></li>
+            <li><a href="#">NMDb Originals</a></li>
+
+        </ul>
+
+    </div>
+    <div class="three-fold-menu">
+        <ul>
+            <h5><img src="{% static 'images/awards.svg' %}" alt='Awards and Events Icon' id='awards-events-icon'>
+            <a href="#">Awards and Events</a></h5>
+            <li><a href="#">National Film Award</a></li>
+            <li><a href="#">Oscar (International)</a></li>
+            <li><a href="#">D Cine Award</a></li>
+            <li><a href="#">All Events</a></li>
+
+        </ul>
+        
+
+        <ul>
+            <h5><img src="{% static 'images/community.svg' %}" alt='Community Icon' id='community-icon'>
+            <a href="#">Community</a></h5>
+            <li><a href="#">Help Center</a></li>
+            <li><a href="#">Contributor Zone</a></li>
+            <li><a href="#">Polls</a></li>
+        </ul>
+    </div>
+</div>
+    </div>
+
     <nav>
-        <img src="{% static 'images/menu.svg' %}" alt='f-menu' id='mimg' class='first-menu'>
+        <img src="{% static 'images/menu.svg' %}" alt='f-menu' id='mimg' class='first-menu' onclick="open_menu()">
         <img src="{% static 'images/NMDB.png' %}" alt='nmdb' id='nmdb'>
-        <p id="menu">
-            <img src="{% static 'images/menu.svg' %}" alt="menu" id="mimg">Menu
+        <p id="menu" onclick="open_menu()">
+            <img src="{% static 'images/menu.svg' %}" alt="menu" id="mimg" >Menu
         </p>
-        <!-- Scarch  -->
-        <div id='scarch'>
+        <!-- Search  -->
+        <div id='search'>
             <div id='all' onclick='all_li()'>
                 <div id='present-list'>All</div>
                 <img src="{% static 'images/triangle.svg' %}" alt='triangle' id='triangle'>
             </div>
             <ui id='all-list'>
                 <li id='ls-all'>
-                    <img src="{% static 'images/scarch.svg' %}" id="list-img">All
+                    <img src="{% static 'images/search.svg' %}" class="list-img">All
                 </li>
                 <li id='ls-title'>
-                    <img src="{% static 'images/film-img.svg' %}" id="list-img">Title
+                    <img src="{% static 'images/film-img.svg' %}" class="list-img">Title
                 </li>
                 <li id='ls-tv'>
-                    <img src="{% static 'images/television.svg' %}" id="list-img">TV Episodes
+                    <img src="{% static 'images/television.svg' %}" class="list-img">TV Episodes
                 </li>
-                <li id='ls-celibs'>
-                    <img src="{% static 'images/group.svg' %}" id="list-img">Celibs
+                <li id='ls-celebs'>
+                    <img src="{% static 'images/group.svg' %}" class="list-img">Celebs
                 </li>
                 <li id='ls-comp'>
-                    <img src="{% static 'images/company.svg' %}" id="list-img">Compaines
+                    <img src="{% static 'images/company.svg' %}" class="list-img">Compaines
                 </li>
                 <li id='ls-key'>
-                    <img src="{% static 'images/right-arrow-triangle.svg' %}" id="list-img">Keywords
+                    <img src="{% static 'images/right-arrow-triangle.svg' %}" class="list-img">Keywords
                 </li>
                 <li id='ls-adv'>
-                    <img src="{% static 'images/document-page-blank.svg' %}" id="list-img">Advance Scarch
-                    <img src="{% static 'images/right-arrow-triangle.svg' %}" class="right-arrow" id="list-img">
+                    <img src="{% static 'images/document-page-blank.svg' %}" class="list-img">Advance Search
+                    <img src="{% static 'images/right-arrow-triangle.svg' %}" class="right-arrow" class="list-img">
                 </li>
             </ui>
-            <input placeholder="Scarch NMDb">
-            <button type="submit"><img src="{% static 'images/scarch.svg' %}"></button>
+            <input placeholder="Search NMDb">
+            <button type="submit"><img src="{% static 'images/search.svg' %}"></button>
         </div>
-        <!-- post scarch -->
+        <!-- post search -->
         <div id="pro">NMDBPro</div>
         <div id="vline"></div>
         <div id="wlist"><img src="{% static 'images/whtchlist.svg' %}" id="wl-img">Watchlist</div>
@@ -61,5 +152,7 @@
     var static_image_url = "{% static 'images/' %}"
 </script>
 <script src="{% static 'js/nmdb-nav.js' %}"></script>
+<script src="{% static 'js/menu-expand.js' %}"></script>
+
 
 </html>

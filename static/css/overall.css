@@ -1,0 +1,9 @@
+body {
+    display: flex;
+    position: relative;
+    width: 100%;
+    margin: 0%;
+    justify-content: center;
+    font-family: Roboto, Helvetica, Arial, sans-serif;
+    background-color: black;
+}
