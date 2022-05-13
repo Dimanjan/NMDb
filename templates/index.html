@@ -83,8 +83,8 @@
             <h5><img src="{% static 'images/awards.svg' %}" alt='Awards and Events Icon' id='awards-events-icon'>
             <a href="#">Awards and Events</a></h5>
             <li><a href="#">National Film Award</a></li>
-            <li><a href="#">Oscar (International)</a></li>
             <li><a href="#">D Cine Award</a></li>
+            <li><a href="#">Oscar (International)</a></li>
             <li><a href="#">All Events</a></li>
 
         </ul>
@@ -141,11 +141,105 @@
             <button type="submit"><img src="{% static 'images/search.svg' %}"></button>
         </div>
         <!-- post search -->
-        <div id="pro">NMDBPro</div>
+        <div id="pro">NMDB<span style="color: #33C5F3;">Pro</span> </div>
         <div id="vline"></div>
         <div id="wlist"><img src="{% static 'images/whtchlist.svg' %}" id="wl-img">Watchlist</div>
         <div id="sin">Sign In</div>
     </nav>
+
+
+
+
+    <!-- Footer -->
+    <footer>
+        <div id="footer_socials">
+            <ul>
+                <li><a href="#"><img src="{% static 'images/facebook.svg' %}" alt=""></a></li>
+                <li><a href="#"><img src="{% static 'images/instagram.svg' %}" alt=""></a></li>
+                <li><a href="#"><img src="{% static 'images/twitch.svg' %}" alt=""></a></li>
+                <li><a href="#"><img src="{% static 'images/twitter.svg' %}" alt=""></a></li>
+                <li><a href="#"><img src="{% static 'images/youtube.svg' %}" alt=""></a></li>
+            </ul>
+        </div>
+        <div id="footer_links">
+            <div id="footer_links1">
+                <span><a href="#">Help <img src="{% static 'images/open_in_new_tab.svg' %}" alt=""></a></span>
+                <span><a href="#">Site Index <img src="{% static 'images/open_in_new_tab.svg' %}" alt=""></a></span>
+                <span><a href="#">NMDbPro <img src="{% static 'images/open_in_new_tab.svg' %}" alt=""></a></span>
+                <span><a href="#">Box Office Mojo <img src="{% static 'images/open_in_new_tab.svg' %}" alt=""></a></span>
+                <span><a href="#">NMDb Developer <img src="{% static 'images/open_in_new_tab.svg' %}" alt=""></a></span>
+                
+            </div>
+            <div id="footer_links2">
+                <span><a href="#">Press Room </a></span>
+                <span><a href="#">Advertising <img src="{% static 'images/open_in_new_tab.svg' %}" alt=""></a></span>
+                <span><a href="#">Jobs <img src="{% static 'images/open_in_new_tab.svg' %}" alt=""></a></span>
+                <span><a href="#">Conditions of Use </a></span>
+                <span><a href="#">Privacy Policy </a></span>
+                <span><a href="#">Interest-Based Ads <img src="{% static 'images/open_in_new_tab.svg' %}" alt=""></a></span>
+            </div>
+            <div id="footer_copyright">
+                <span>© 2022 NMDb</span>
+                <span>All Rights Reserved</span>
+            </div>
+        </div>
+        
+    </footer>
+    <style>
+        footer {
+            margin-top:calc(5% + 60px);
+            width: 100%;
+            justify-content: center;
+    align-items: center;
+}
+footer ul{
+    list-style-type: none;
+}
+#footer_socials ul{
+    
+    display: flex;
+    flex-direction: row;
+    margin: auto;
+    align-items: center;
+    justify-content: center;
+}
+footer li{
+    padding: 30px;
+}
+footer a{
+    text-decoration: none;
+    color: #fff;
+    cursor: pointer;
+}
+/* create larger distance between lines inside footer_links */
+#footer_links {
+
+    width: 70%;
+    padding: 30px;
+    margin: auto;
+    
+    
+    display: table;
+    margin: 0 auto;
+
+}
+#footer_links1{
+    padding-bottom: 20px;
+    display: inline-block;
+    text-align: center;
+}
+#footer_links span{
+    white-space: nowrap;
+    display: inline-block;
+    margin: 10px;
+
+}
+#footer_copyright{
+    display: inline-block;
+    text-align: center;
+    color: rgb(139, 134, 134);
+}
+    </style>
 
 </body>
 <script>
