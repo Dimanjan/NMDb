@@ -45,6 +45,25 @@ STATUS_CHOICES=(
     ('TR','Top Rated'),
     ('FA','Featured'),
 )
+class Director(models.Model):
+    name = models.CharField(max_length=255)
+    image=models.ImageField(upload_to='directors/',max_length=500)
+    born=models.DateField()
+    description=models.TextField(max_length=1000)
+
+    def __str__(self):
+        return self.name
+
+class Actor(models.Model):
+    name = models.CharField(max_length=255)
+    image=models.ImageField(upload_to='actors/',max_length=500)
+    born=models.DateField()
+    description=models.TextField(max_length=1000)
+
+    def __str__(self):
+        return self.name
+
+
 class Genre(models.Model):
     name=models.CharField(max_length=255,choices=GENRE_CHOICES)
     def __str__(self):
@@ -56,38 +75,16 @@ class Movie(models.Model):
     image=models.ImageField(upload_to='movies/',max_length=500)
     #category=models.CharField(max_length=255,choices=CATEGORY_CHOICES)
     genre=models.ManyToManyField(Genre,related_name='genres')
+    director=models.ManyToManyField(Director,related_name='director')
+    actor=models.ManyToManyField(Actor,related_name='actor')
     language=models.CharField(max_length=255,choices=LANGUAGE_CHOICES)
     status=models.CharField(max_length=255,choices=STATUS_CHOICES)
     duration=models.IntegerField()
     year_of_production=models.DateField()
     views_count=models.IntegerField(default=0)
 
-    # return absolute url to the movie detail page
-    def get_absolute_url(self):
-        return reverse('movie_detail',kwargs={'pk':self.id})
-
 
     def __str__(self):
         return self.title
 
-
-class Director(models.Model):
-    name = models.CharField(max_length=255)
-    image=models.ImageField(upload_to='directors/',max_length=500)
-    born=models.DateField()
-    description=models.TextField(max_length=1000)
-    movies=models.ManyToManyField(Movie,related_name='directors')
-
-    def __str__(self):
-        return self.name
-
-class Actor(models.Model):
-    name = models.CharField(max_length=255)
-    image=models.ImageField(upload_to='actors/',max_length=500)
-    born=models.DateField()
-    description=models.TextField(max_length=1000)
-    movies=models.ManyToManyField(Movie,related_name='actors')
-
-    def __str__(self):
-        return self.name
 

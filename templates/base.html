@@ -112,11 +112,13 @@
 
     <nav>
         <img src="{% static 'images/menu.svg' %}" alt='f-menu' id='mimg' class='first-menu' onclick="open_menu()">
-        <img src="{% static 'images/NMDB.png' %}" alt='nmdb' id='nmdb'>
+        <a href="{% url 'home' %}"><img src="{% static 'images/NMDB.png' %}" alt='nmdb' id='nmdb'></a>
         <p id="menu" onclick="open_menu()">
             <img src="{% static 'images/menu.svg' %}" alt="menu" id="mimg" >Menu
         </p>
         <!-- Search  -->
+        <form name="search_form" method="GET" action="{% url 'search' %}">  
+
         <div id='search'>
             <div id='all' onclick='all_li()'>
                 <div id='present-list'>All</div>
@@ -130,7 +132,7 @@
                     <img src="{% static 'images/film-img.svg' %}" class="list-img">Title
                 </li>
                 <li id='ls-tv'>
-                    <img src="{% static 'images/television.svg' %}" class="list-img">TV Episodes
+                    <img src="{% static 'images/television.svg' %}" class="list-img">TV Series
                 </li>
                 <li id='ls-celebs'>
                     <img src="{% static 'images/group.svg' %}" class="list-img">Celebs
@@ -146,9 +148,13 @@
                     <img src="{% static 'images/right-arrow-triangle.svg' %}" class="right-arrow" class="list-img">
                 </li>
             </ui>
-            <input placeholder="Search NMDb">
-            <button type="submit"><img src="{% static 'images/search.svg' %}"></button>
+                <input type="text" name="search" placeholder="Search NMDb">
+                <button type="submit"><img src="{% static 'images/search.svg' %}"></button>
+            <!-- <input placeholder="Search NMDb">
+            <button type="submit"><img src="{% static 'images/search.svg' %}"></button> -->
         </div>
+    </form>
+
         <!-- post search -->
         <div id="pro">NMDB<span style="color: #33C5F3;">Pro</span> </div>
         <div id="vline"></div>

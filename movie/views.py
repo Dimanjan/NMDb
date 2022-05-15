@@ -18,4 +18,16 @@ class MovieDetail(DetailView):
     def get_object(self):
         return Movie.objects.get(id=self.kwargs['pk'])
     
-    
+
+def search(request):
+    if request.method == 'GET':
+        search_text = request.GET.get('search')
+        try:
+            status = Movie.objects.filter(title__icontains=search_text)
+            print(status)
+            return render(request, 'movie/search.html', {'results': status})
+        except:
+            return render(request, 'movie/search.html', {'results': status})
+
+    else:
+        return render(request, 'movie/search.html')

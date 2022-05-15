@@ -1,3 +1,7 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
 <h2>Movie List</h2>
 <ul>
 {% for movie in object_list %}
@@ -10,3 +14,6 @@
     <li>No movies yet.</li>
 {% endfor %}
 </ul>
+
+{% endblock %}
+

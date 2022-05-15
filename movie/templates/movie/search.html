@@ -1,0 +1,20 @@
+ {% extends 'base.html' %}
+
+{% block content %} 
+<h2>Search results</h2>
+
+{% if results %}
+<ul>
+{% for result in results %}
+<a href="{{ result.get_absolute_url }} ">
+    <li> {{ result.title }}</li>
+    <img src="{{result.image.url}}" alt="{{result.title}}" width="200" height="200">
+</a>
+    {% empty %}
+    <li>No movies yet.</li>
+{% endfor %}
+</ul>
+{% endif %}
+
+{% endblock %}
+
