@@ -83,6 +83,9 @@ class Movie(models.Model):
     year_of_production=models.DateField()
     views_count=models.IntegerField(default=0)
 
+    def get_absolute_url(self):
+        return reverse('movie_detail',kwargs={'pk':self.pk})
+
 
     def __str__(self):
         return self.title
