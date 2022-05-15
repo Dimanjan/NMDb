@@ -1,4 +1,7 @@
 from django.db import models
+
+#import reverse
+from django.urls import reverse
 #from multiselectfield import MultiSelectField
 
 # Create your models here.
@@ -58,6 +61,11 @@ class Movie(models.Model):
     duration=models.IntegerField()
     year_of_production=models.DateField()
     views_count=models.IntegerField(default=0)
+
+    # return absolute url to the movie detail page
+    def get_absolute_url(self):
+        return reverse('movie_detail',kwargs={'pk':self.id})
+
 
     def __str__(self):
         return self.title

@@ -1,1 +1,12 @@
-<h2>Movie Detail</h2>
+
+
+<h1>{{object.title}}</h1>
+<p>{{object.year_of_production}}</p>
+<img src="{{object.image.url}}" alt="{{object.title}}" width="200" height="200">
+<p>{{object.description}}</p>
+<p>Language: {{object.language}}</p>
+<p>Duration: {{object.duration}} minutes</p>
+
+<p>Views: {{object.views_count}}</p>
+
+<p>Genre: {% for genre in movie.genre.all %}{{ genre }}, {% endfor %}</p>
