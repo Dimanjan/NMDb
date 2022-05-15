@@ -3,15 +3,42 @@
 
 {% block content %}
 
-<h1>{{object.title}}</h1>
-<p>{{object.year_of_production}}</p>
-<img src="{{object.image.url}}" alt="{{object.title}}" width="200" height="200">
-<p>{{object.description}}</p>
-<p>Language: {{object.language}}</p>
-<p>Duration: {{object.duration}} minutes</p>
+<h1>{{movie.title}}</h1>
+<p>{{movie.year_of_production}}</p>
+<img src="{{movie.image.url}}" alt="{{movie.title}}" width="200" height="200">
+<p>{{movie.description}}</p>
+<p>Language: {{movie.language}}</p>
+<p>Duration: {{movie.duration}} minutes</p>
 
-<p>Views: {{object.views_count}}</p>
+<p>Views: {{movie.views_count}}</p>
 
 <p>Genre: {% for genre in movie.genre.all %}{{ genre }}, {% endfor %}</p>
+
+<div class="card-body">
+    <h3>Leave a comment</h3>
+    <form method="post" style="margin-top: 1.3em;">
+      {{ comment_form.as_p }}
+      {% csrf_token %}
+      <button type="submit" class="btn btn-primary  btn-lg">Submit</button>
+    </form>
+    {% if new_comment %}
+    <div class="alert alert-success" role="alert">
+      Your new comment is live!
+    </div>
+    
+    {% endif %}
+  </div>
+
+{% for comment in comments %}
+        <div class="comments" style="padding: 10px;">
+          <p class="font-weight-bold">
+            {{ comment.user }}
+            <span class=" text-muted font-weight-normal">
+              {{ comment.created_on }}
+            </span>
+          </p>
+          {{ comment.body | linebreaks }}
+        </div>
+{% endfor %}
 
 {% endblock %}

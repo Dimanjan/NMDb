@@ -1,4 +1,5 @@
-from django.shortcuts import render
+from .forms import CommentForm
+from django.shortcuts import get_object_or_404, render
 # Create your views here.
 
 from django.views.generic import ListView, DetailView
@@ -11,9 +12,32 @@ class MovieList(ListView):
     template_name = 'movie/movie_list.html'
 
 
-class MovieDetail(DetailView):
-    model = Movie
+def MovieDetail(request, pk):
     template_name = 'movie/movie_detail.html'
+    movie=get_object_or_404(Movie, pk=pk)
+    comments=movie.comments.filter(active=True)
+    new_comment=None
+    # Comment posted
+    if request.method == 'POST':
+        # A comment was posted
+        comment_form = CommentForm(data=request.POST)
+        if comment_form.is_valid():
+            # Create Comment object but don't save to database yet
+            new_comment = comment_form.save(commit=False)
+            # Assign the current movie to the comment
+            new_comment.movie = movie
+            # Save the comment to the database
+            new_comment.save()
+    else:
+        comment_form = CommentForm()
+
+    return render(request, template_name, 
+                    {'movie': movie,
+                    'comments': comments,
+                    'new_comment': new_comment,
+                    'comment_form': CommentForm()})
+
+
     """Returns the URL to access a particular instance of the model."""
     def get_object(self):
         return Movie.objects.get(id=self.kwargs['pk'])
