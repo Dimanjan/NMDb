@@ -1,4 +1,6 @@
 from django.db import models
+from django.core.validators import MaxValueValidator, MinValueValidator
+
 
 #import reverse
 from django.urls import reverse
@@ -91,10 +93,14 @@ class Movie(models.Model):
         return self.title
 
 
-# comments
-class Comment(models.Model):
-    movie=models.ForeignKey(Movie,on_delete=models.CASCADE, related_name="comments")
-    user=models.ForeignKey('auth.User',on_delete=models.CASCADE, related_name="comments", default='1')
+# reviews
+class Review(models.Model):
+    movie=models.ForeignKey(Movie,on_delete=models.CASCADE, related_name="reviews")
+    user=models.ForeignKey('auth.User',on_delete=models.CASCADE, related_name="reviews", default='1')
+    rating=models.IntegerField(validators=[
+            MaxValueValidator(10),
+            MinValueValidator(1)
+        ])
     body=models.TextField()
     created_on=models.DateTimeField(auto_now_add=True)
     active = models.BooleanField(default=True)

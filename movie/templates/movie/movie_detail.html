@@ -1,6 +1,6 @@
 
 {% extends 'base.html' %}
-
+{% load static %}
 {% block content %}
 
 <h1>{{movie.title}}</h1>
@@ -14,30 +14,104 @@
 
 <p>Genre: {% for genre in movie.genre.all %}{{ genre }}, {% endfor %}</p>
 
+
+
 <div class="card-body">
-    <h3>Leave a comment</h3>
+    <h3>Leave a review</h3>
+<div id="review_stars">
+  <!-- stars 0-9 -->
+  <div class="review_star" id="star0"></div>
+  <div class="review_star" id="star1"></div>
+  <div class="review_star" id="star2"></div>
+  <div class="review_star" id="star3"></div>
+  <div class="review_star" id="star4"></div>
+  <div class="review_star" id="star5"></div>
+  <div class="review_star" id="star6"></div>
+  <div class="review_star" id="star7"></div>
+  <div class="review_star" id="star8"></div>
+  <div class="review_star" id="star9"></div>
+</div>
+<style>
+  #review_stars {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+  }
+</style>
+<script>
+  var id_rating = document.getElementById("id_rating");
+  var review_stars = document.getElementById("review_stars");
+  var stars = review_stars.getElementsByClassName("review_star");
+
+  let star_grey_empty='{% static "images/star_grey_empty.svg" %}'
+  let star_blue_filled='{% static "images/star_blue_filled.svg" %}'
+
+
+  for(var i = 0; i < stars.length; i++){
+    // create image element and add to stars
+    var star = document.createElement("img");
+    star.src = star_grey_empty;
+    //set width and height
+    star.width = "30";
+    star.height = "30";
+    star.className = "star";
+    stars[i].appendChild(star);
+    // add hover event
+    stars[i].addEventListener("mouseover", function(){
+      console.log(this.id);
+      var star_id = this.id.slice(-1);
+      for(var j = 0; j < stars.length; j++){
+        if(j <= parseInt(star_id)){
+          stars[j].getElementsByClassName("star")[0].src = star_blue_filled;
+        }
+        else{
+          stars[j].getElementsByClassName("star")[0].src = star_grey_empty;
+        }
+      }
+    });
+    // add click event
+    stars[i].addEventListener("click", function(){
+      var star_id = this.id.slice(-1);
+      for(var j = 0; j < stars.length; j++){
+        if(j <= star_id){
+          stars[j].getElementsByClassName("star")[0].src = star_blue_filled;
+        }
+        else{
+          stars[j].getElementsByClassName("star")[0].src = star_grey_empty;
+        }
+      }
+      document.getElementById('id_rating').value = parseInt(star_id)+1;
+    });
+  }
+
+  
+</script>
     <form method="post" style="margin-top: 1.3em;">
-      {{ comment_form.as_p }}
+      {% for field in review_form %}
+          {{ field }}
+      {% endfor %}
       {% csrf_token %}
       <button type="submit" class="btn btn-primary  btn-lg">Submit</button>
     </form>
-    {% if new_comment %}
+    {% if new_review %}
     <div class="alert alert-success" role="alert">
-      Your new comment is live!
+      Your new review is live!
     </div>
     
     {% endif %}
   </div>
 
-{% for comment in comments %}
-        <div class="comments" style="padding: 10px;">
+{% for review in reviews %}
+        <div class="reviews" style="padding: 10px;">
           <p class="font-weight-bold">
-            {{ comment.user }}
+            {{ review.user }}
             <span class=" text-muted font-weight-normal">
-              {{ comment.created_on }}
+              {{ review.created_on }}
             </span>
           </p>
-          {{ comment.body | linebreaks }}
+          <p>Rating: {{ review.rating }}</p>
+          {{ review.body | linebreaks }}
         </div>
 {% endfor %}
 
